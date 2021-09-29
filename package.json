@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "lint": "eslint .",
-    "lint:fix": "yarn lint -o --fix",
+    "lint:fix": "yarn lint --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn test -o --watch",
     "test:staged": "yarn test -o --findRelatedTests",
