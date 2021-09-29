@@ -6,12 +6,12 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "lint": "eslint .",
-    "lint:fix": "yarn lint -- --fix",
+    "lint:fix": "yarn lint -o --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
-    "test:watch": "yarn test -- --watch",
-    "test:staged": "yarn test -- --findRelatedTests",
-    "test:ci": "yarn test -- --coverage",
-    "postinstall": "husky install"
+    "test:watch": "yarn test -o --watch",
+    "test:staged": "yarn test -o --findRelatedTests",
+    "test:ci": "yarn test -o --coverage",
+    "prepare": "husky install"
   },
   "author": "Wescley Torres <jewescley@gmail.com>",
   "license": "MIT",
