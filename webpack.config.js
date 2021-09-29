@@ -13,18 +13,18 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx'],
     alias: {
       '@': path.join(__dirname, 'src')
-    },
+    }
   },
-    devServer: {
-      contentBase: './public',
-      writeToDisk: true,
-      historyApiFallback: true
-    },
-    externals: {
-      react: 'React',
-      'react-dom': 'ReactDOM'
-    },
-    plugins: [
-      new CleanWebpackPlugin()
-    ]
+  devServer: {
+    contentBase: './public',
+    writeToDisk: true,
+    historyApiFallback: true
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  },
+  plugins: [
+    new CleanWebpackPlugin()
+  ]
 }
