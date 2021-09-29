@@ -10,7 +10,7 @@
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
-    "test:ci": "yarn test -o --coverage",
+    "test:ci": "yarn test --coverage",
     "prepare": "husky install"
   },
   "author": "Wescley Torres <jewescley@gmail.com>",
