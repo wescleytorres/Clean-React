@@ -5,7 +5,7 @@ import Styles from './form-status-styles.scss'
 
 const FormStatus: React.FC = () => (
   <div className={Styles.errorWrap}>
-  <Spinner className={Styles.spinner} />
+  <Spinner />
   <span className={Styles.error}>Erro</span>
 </div>
 )

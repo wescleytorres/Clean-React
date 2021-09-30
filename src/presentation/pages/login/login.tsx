@@ -1,8 +1,5 @@
 import React from 'react'
-import Header from '@/presentation/components/login-header/login-header'
-import Input from '@/presentation/components/input/input'
-import FormStatus from '@/presentation/components/form-status/form-status'
-import Footer from '@/presentation/components/footer/footer'
+import { Header, Input, FormStatus, Footer } from '@/presentation/components'
 
 import Styles from './login-styles.scss'
 
@@ -16,7 +13,7 @@ const Login: React.FC = () => {
         <Input type="password" name="password" placeholder="Digite sua senha" />
         <button className={Styles.submit} type="submit">Entrar</button>
         <span className={Styles.link}>Criar conta</span>
-      <FormStatus />
+        <FormStatus />
       </form>
       <Footer />
     </div>
