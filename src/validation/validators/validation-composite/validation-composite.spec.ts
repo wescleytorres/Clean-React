@@ -31,7 +31,7 @@ describe('ValidationComposite', () => {
     expect(error).toBe(error)
   })
 
-  test('Should return error if any validation fails', () => {
+  test('Should return falsy if any validation success', () => {
     const fieldName = faker.database.column()
     const { sut } = makeSut(fieldName)
     const error = sut.validate(fieldName, faker.random.word())
