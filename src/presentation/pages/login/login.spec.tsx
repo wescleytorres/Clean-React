@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history'
 import faker from 'faker'
 import 'jest-localstorage-mock'
 import { ValidationStub, AuthenticationSpy } from '@/presentation/test'
-import Login from './login'
+import { Login } from '@/presentation/pages'
 import {
   render,
   RenderResult,
