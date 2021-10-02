@@ -70,7 +70,7 @@ const testStatusForField = (
   validationError?: string): void => {
   const passwordStatus = sut.getByTestId(`${fieldName}-status`)
   expect(passwordStatus.title).toBe(validationError || 'Tudo certo!')
-  expect(passwordStatus.textContent).toBe(validationError ? '🔴' : '🟢')
+  expect(passwordStatus.textContent).toBe(validationError ? '🔴' : '✅')
 }
 
 const testErrorWrapChildCount = (sut: RenderResult, count: number): void => {
