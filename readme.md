@@ -1,5 +1,5 @@
 [![Build Status](https://app.travis-ci.com/wescleytorres/Clean-React.svg?branch=master)](https://app.travis-ci.com/wescleytorres/Clean-React)
-[![Coverage Status](https://coveralls.io/repos/github/rmanguinho/clean-react/badge.svg?branch=master)](https://coveralls.io/github/rmanguinho/clean-react?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/wescleytorres/Clean-React/badge.svg?branch=master)](https://coveralls.io/github/wescleytorres/Clean-React?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/rmanguinho/clean-react/badge.svg)](https://snyk.io/test/github/rmanguinho/clean-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
