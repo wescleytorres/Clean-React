@@ -86,13 +86,13 @@ const Login: React.FC<Props> = ({
             placeholder="Digite sua senha"
           />
           <SubmitButton text="Entrar" />
+          <FormStatus />
 
           <Link
             data-testid="signup"
             to="/signup"
             className={Styles.link}>Criar conta
           </Link>
-          <FormStatus />
         </form>
       </Context.Provider>
       <Footer />
