@@ -38,4 +38,9 @@ button {
   &:hover {
     background-color: $primary;
   }
+
+  &:disabled {
+    background-color: $disabled-Background;
+    color: $disabled-Color;
+  }
 }
