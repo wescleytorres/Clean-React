@@ -82,6 +82,24 @@ describe('Login', () => {
     cy.url().should('eq', `${baseUrl}/login`)
   })
 
+  it('Should present UnexpectedError if invalid data is returned', () => {
+    cy.intercept({
+      method: 'POST',
+      url: /login/
+    }, {
+      statusCode: 200,
+      body: {
+        invalidProperty: faker.datatype.uuid()
+      }
+    }).as('request')
+    cy.getByTestId('email').focus().type(faker.internet.email())
+    cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5))
+    cy.getByTestId('submit').click()
+    cy.getByTestId('spinner').should('not.exist')
+      .getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
+    cy.url().should('eq', `${baseUrl}/login`)
+  })
+
   it('Should present save accessToken if valid credentials are provided', () => {
     cy.intercept({
       method: 'POST',
@@ -101,21 +119,19 @@ describe('Login', () => {
     cy.window().then(window => assert.isOk(window.localStorage.getItem('accessToken')))
   })
 
-  it('Should present UnexpectedError if invalid data is returned', () => {
+  it('Should prevent multiple submits', () => {
     cy.intercept({
       method: 'POST',
       url: /login/
     }, {
       statusCode: 200,
       body: {
-        invalidProperty: faker.datatype.uuid()
+        accessToken: faker.datatype.uuid()
       }
     }).as('request')
     cy.getByTestId('email').focus().type(faker.internet.email())
     cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5))
-    cy.getByTestId('submit').click()
-    cy.getByTestId('spinner').should('not.exist')
-      .getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
-    cy.url().should('eq', `${baseUrl}/login`)
+    cy.getByTestId('submit').dblclick()
+    cy.get('@request.all').should('have.length', 1)
   })
 })
