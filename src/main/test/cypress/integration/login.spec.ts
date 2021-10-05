@@ -78,7 +78,11 @@ describe('Login', () => {
     cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5))
     cy.getByTestId('submit').click()
     cy.getByTestId('spinner').should('not.exist')
-      .getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
+      .getByTestId('main-error')
+      .should(
+        'contain.text',
+        'Algo de errado aconteceu. Tente novamente em breve.'
+      )
     cy.url().should('eq', `${baseUrl}/login`)
   })
 
@@ -93,10 +97,13 @@ describe('Login', () => {
       }
     }).as('request')
     cy.getByTestId('email').focus().type(faker.internet.email())
-    cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5))
-    cy.getByTestId('submit').click()
+    cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5)).type('{enter}')
     cy.getByTestId('spinner').should('not.exist')
-      .getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
+      .getByTestId('main-error')
+      .should(
+        'contain.text',
+        'Algo de errado aconteceu. Tente novamente em breve.'
+      )
     cy.url().should('eq', `${baseUrl}/login`)
   })
 
@@ -132,6 +139,7 @@ describe('Login', () => {
     cy.getByTestId('email').focus().type(faker.internet.email())
     cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5))
     cy.getByTestId('submit').dblclick()
+    cy.wait('@request')
     cy.get('@request.all').should('have.length', 1)
   })
 })
