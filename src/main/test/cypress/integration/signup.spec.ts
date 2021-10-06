@@ -1,10 +1,15 @@
 import faker from 'faker'
 import * as FormHelper from '../support/form-helper'
-import { mockForbiddenError } from '../support/http-mocks'
+import { mockForbiddenError, mockServerError } from '../support/http-mocks'
 // import * as Http from '../support/login-mocks'
 
 const path = /api\/signup/
 const mockEmailInUseError = (): void => mockForbiddenError(path, 'POST')
+const mockUnexpectedError = (): void => mockServerError(path, 'POST')
+// const mockSuccess = (): void => {
+//   // mockOkRefactor(/api\/surveys/, 'GET', 'survey-list')
+//   mockOk()
+// }
 
 const populateFields = (): void => {
   cy.getByTestId('name').focus().type(faker.random.alphaNumeric(7))
@@ -70,4 +75,26 @@ describe('SignUp', () => {
     FormHelper.testMainError('Esse e-mail já está em uso')
     FormHelper.testUrl('/signup')
   })
+
+  it('Should present UnexpectedError on default error cases', () => {
+    mockUnexpectedError()
+    simulateValidSubmit()
+    FormHelper.testMainError('Algo de errado aconteceu. Tente novamente em breve.')
+    FormHelper.testUrl('/signup')
+  })
+
+  // it('Should store account on localStorage if valid credentials are provided', () => {
+  //   mockSuccess()
+  //   simulateValidSubmit()
+  //   FormHelper.testUrl('/')
+  //   FormHelper.testLocalStorageItem('account')
+  // })
+
+  // it('Should prevent multiple submits', () => {
+  //   mockSuccess()
+  //   populateFields()
+  //   cy.getByTestId('submit').dblclick()
+  //   cy.wait('@request')
+  //   cy.get('@request.all').should('have.length', 1)
+  // })
 })
