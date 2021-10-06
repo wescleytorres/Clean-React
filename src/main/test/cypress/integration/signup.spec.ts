@@ -1,5 +1,23 @@
 import faker from 'faker'
 import * as FormHelper from '../support/form-helper'
+import { mockForbiddenError } from '../support/http-mocks'
+// import * as Http from '../support/login-mocks'
+
+const path = /api\/signup/
+const mockEmailInUseError = (): void => mockForbiddenError(path, 'POST')
+
+const populateFields = (): void => {
+  cy.getByTestId('name').focus().type(faker.random.alphaNumeric(7))
+  cy.getByTestId('email').focus().type(faker.internet.email())
+  const password = faker.random.alphaNumeric(7)
+  cy.getByTestId('password').focus().type(password)
+  cy.getByTestId('passwordConfirmation').focus().type(password)
+}
+
+const simulateValidSubmit = (): void => {
+  populateFields()
+  cy.getByTestId('submit').click()
+}
 
 describe('SignUp', () => {
   beforeEach(() => {
@@ -44,5 +62,12 @@ describe('SignUp', () => {
     FormHelper.testInputStatus('passwordConfirmation')
     cy.getByTestId('submit').should('not.have.attr', 'disabled')
     cy.getByTestId('error-wrap').should('not.have.descendants')
+  })
+
+  it('Should present InvalidCredentialsError on 403', () => {
+    mockEmailInUseError()
+    simulateValidSubmit()
+    FormHelper.testMainError('Esse e-mail já está em uso')
+    FormHelper.testUrl('/signup')
   })
 })

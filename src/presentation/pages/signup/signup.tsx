@@ -109,6 +109,7 @@ const SignUp: React.FC<Props> = ({
           />
           <SubmitButton text="Cadastrar" />
 
+          <FormStatus />
           <Link
             data-testid="login-link"
             replace
@@ -117,7 +118,6 @@ const SignUp: React.FC<Props> = ({
           >
             Voltar para login
           </Link>
-          <FormStatus />
         </form>
       </Context.Provider>
       <Footer />
