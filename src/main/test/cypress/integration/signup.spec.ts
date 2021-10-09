@@ -1,7 +1,7 @@
 import faker from 'faker'
 import * as FormHelper from '../support/form-helper'
 import { mockForbiddenError, mockServerError } from '../support/http-mocks'
-// import * as Http from '../support/login-mocks'
+import * as Http from '../support/signup-mocks'
 
 const path = /api\/signup/
 const mockEmailInUseError = (): void => mockForbiddenError(path, 'POST')
@@ -83,18 +83,25 @@ describe('SignUp', () => {
     FormHelper.testUrl('/signup')
   })
 
-  // it('Should store account on localStorage if valid credentials are provided', () => {
-  //   mockSuccess()
-  //   simulateValidSubmit()
-  //   FormHelper.testUrl('/')
-  //   FormHelper.testLocalStorageItem('account')
-  // })
+  it('Should store account on localStorage if valid credentials are provided', () => {
+    Http.mockOk()
+    simulateValidSubmit()
+    FormHelper.testUrl('/')
+    FormHelper.testLocalStorageItem('account')
+  })
 
-  // it('Should prevent multiple submits', () => {
-  //   mockSuccess()
-  //   populateFields()
-  //   cy.getByTestId('submit').dblclick()
-  //   cy.wait('@request')
-  //   cy.get('@request.all').should('have.length', 1)
-  // })
+  it('Should prevent multiple submits', () => {
+    Http.mockOk()
+    populateFields()
+    cy.getByTestId('submit').dblclick()
+    FormHelper.testHttpCallsCount(1)
+    // cy.wait('@request')
+    // cy.get('@request.all').should('have.length', 1)
+  })
+
+  it('Should not call submit if form is invalid', () => {
+    Http.mockOk()
+    cy.getByTestId('email').focus().type(faker.internet.email()).type('{enter}')
+    FormHelper.testHttpCallsCount(0)
+  })
 })
