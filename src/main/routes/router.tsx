@@ -4,17 +4,7 @@ import { makeLogin } from '@/main/factories/pages/login/login-factory'
 import { makeSignUp } from '@/main/factories/pages/signup/signup-factory'
 import { ApiContext } from '@/presentation/contexts'
 import { SurveyList } from '@/presentation/pages'
-import { AccountModel } from '@/domain/models'
-import { UnexpectedError } from '@/domain/errors'
-import { makeLocalStorageAdapter }
-  from '@/main/factories/cache/local-storage-adapter-factory'
-
-const setCurrentAccountAdapter = (account: AccountModel): void => {
-  if (!account?.accessToken) {
-    throw new UnexpectedError()
-  }
-  makeLocalStorageAdapter().set('account', JSON.stringify(account))
-}
+import { setCurrentAccountAdapter } from '@/main/adapters/current-account-adapter'
 
 const Router: React.FC = () => (
   <ApiContext.Provider
