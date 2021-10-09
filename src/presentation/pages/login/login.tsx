@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Header, Input, FormStatus, Footer, SubmitButton } from '@/presentation/components'
+import { LoginHeader, Input, FormStatus, Footer, SubmitButton } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
 import { Authentication, SaveAccessToken } from '@/domain/usecases'
@@ -67,7 +67,7 @@ const Login: React.FC<Props> = ({
 
   return (
     <div className={Styles.loginWrap}>
-      <Header />
+      <LoginHeader />
       <Context.Provider value={ { state, setState } }>
         <form
           data-testid="form"
