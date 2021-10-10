@@ -1,7 +1,10 @@
 import { UnexpectedError } from '@/domain/errors'
 import { mockAccountModel } from '@/domain/test'
 import { LocalStorageAdapter } from '@/infra/cache/local-storage-adapter'
-import { setCurrentAccountAdapter, getCurrentAccountAdapter } from './current-account-adapter'
+import {
+  setCurrentAccountAdapter,
+  getCurrentAccountAdapter
+} from './current-account-adapter'
 
 jest.mock('@/infra/cache/local-storage-adapter')
 

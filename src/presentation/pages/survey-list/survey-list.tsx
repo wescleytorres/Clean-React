@@ -5,7 +5,7 @@ import {
   SurveyListItem,
   SurveyError
 } from '@/presentation/pages/survey-list/components'
-import { LoadSurveyList } from '@/domain/usecases/load-survey-list'
+import { LoadSurveyList } from '@/domain/usecases'
 import { SurveyModel } from '@/domain/models'
 
 import Styles from './survey-list-styles.scss'
